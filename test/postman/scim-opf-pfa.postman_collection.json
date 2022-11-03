@@ -1,0 +1,1626 @@
+{
+	"info": {
+		"_postman_id": "18348e38-8b7c-4d6b-8a27-31ee47da076d",
+		"name": "PFA SCIM PHP Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ResourceTypes",
+			"item": [
+				{
+					"name": "Read all ResourceTypes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(jsonData.Resources).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains exactly two entries\", () => {",
+									"    pm.expect(jsonData.Resources.length).to.eql(2);",
+									"});",
+									"",
+									"pm.test(\"Response body contains ResourceType with id \\\"User\\\"\", () => {",
+									"    userIsContained = jsonData.Resources.some((resource) => resource.id === \"User\");",
+									"    pm.expect(userIsContained).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body contains ResourceType with id \\\"Domain\\\"\", () => {",
+									"    domainIsContained = jsonData.Resources.some((resource) => resource.id === \"Domain\");",
+									"    pm.expect(domainIsContained).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ResourceTypes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ResourceTypes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Schemas",
+			"item": [
+				{
+					"name": "Read all Schemas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(jsonData.Resources).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains exactly five entries\", () => {",
+									"    pm.expect(jsonData.Resources.length).to.eql(5);",
+									"});",
+									"",
+									"pm.test(\"Response body contains Schema with id \\\"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\\\"\", () => {",
+									"    isContained = jsonData.Resources.some((resource) => resource.id === \"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\");",
+									"    pm.expect(isContained).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body contains Schema with id \\\"urn:ietf:params:scim:schemas:core:2.0:ResourceType\\\"\", () => {",
+									"    isContained = jsonData.Resources.some((resource) => resource.id === \"urn:ietf:params:scim:schemas:core:2.0:ResourceType\");",
+									"    pm.expect(isContained).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body contains Schema with id \\\"urn:ietf:params:scim:schemas:core:2.0:User\\\"\", () => {",
+									"    isContained = jsonData.Resources.some((resource) => resource.id === \"urn:ietf:params:scim:schemas:core:2.0:User\");",
+									"    pm.expect(isContained).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body contains Schema with id \\\"urn:ietf:params:scim:schemas:core:2.0:Schema\\\"\", () => {",
+									"    isContained = jsonData.Resources.some((resource) => resource.id === \"urn:ietf:params:scim:schemas:core:2.0:Schema\");",
+									"    pm.expect(isContained).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body contains Schema with id \\\"urn:ietf:params:scim:schema:audriga:core:2.0:Domain\\\"\", () => {",
+									"    isContained = jsonData.Resources.some((resource) => resource.id === \"urn:ietf:params:scim:schema:audriga:core:2.0:Domain\");",
+									"    pm.expect(isContained).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer: {{superadmin_jwt}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Schemas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Schemas"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ServiceProviderConfigs",
+			"item": [
+				{
+					"name": "Read all ServiceProviderConfigs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(pm.response.json()).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains a ServiceProviderConfig with a correct schema\", () => {",
+									"    pm.expect(pm.response.json().schemas).to.include(\"urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer: {{superadmin_jwt}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/ServiceProviderConfig",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ServiceProviderConfig"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create a single user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(pm.response.json()).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with userName \\\"createdtestuser@test.org\\\"\", () => {",
+									"    pm.expect(pm.response.json().userName).to.eql(\"createdtestuser@test.org\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains a valid non-null user ID (the ID of the user which was created)\", () => {",
+									"    pm.expect(pm.response.json().id).to.not.be.null;",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with sizeQuota equal to 12345\", () => {",
+									"    pm.expect(pm.response.json()[\"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\"].sizeQuota).to.eql(12345);",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"testUserId\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/scim+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"createdtestuser@test.org\",\n    \"id\": \"createdtestuser@test.org\",\n    \"active\": true,\n    \"password\": \"somepass123\",\n    \"displayName\": \"createdtestuser\",\n    \"emails\": [{\"value\":\"createdtestuser@test.org\"}],\n    \"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\": {\n        \"sizeQuota\": 12345\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read a single user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(pm.response.json()).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains the user ID of the user we want to read\", () => {",
+									"    pm.expect(pm.response.json().id).to.eql(\"createdtestuser@test.org\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with userName \\\"createdtestuser@test.org\\\"\", () => {",
+									"    pm.expect(pm.response.json().userName).to.eql(\"createdtestuser@test.org\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with sizeQuota equal to 12345\", () => {",
+									"    pm.expect(pm.response.json()[\"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\"].sizeQuota).to.eql(12345);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Users/{{testUserId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Users",
+								"{{testUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read a non-existent user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 404\", () => {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response body is empty\", () => {",
+									"    pm.expect(pm.response.body).to.be.undefined;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Users/some-non-existent-user@test.org",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Users",
+								"some-non-existent-user@test.org"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(pm.response.json().Resources).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with userName \\\"createdtestuser@test.org\\\"\", () => {",
+									"    pm.expect(pm.response.json().Resources[0].userName).to.eql(\"createdtestuser@test.org\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with sizeQuota equal to 12345\", () => {",
+									"    pm.expect(pm.response.json().Resources[0][\"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\"].sizeQuota).to.eql(12345);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a single user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(pm.response.json()).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains the user ID of the user we want to read\", () => {",
+									"    pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get('testUserId'));",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with displayName \\\"updatedtestuser\\\"\", () => {",
+									"    pm.expect(pm.response.json().displayName).to.eql(\"updatedtestuser\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains user with sizeQuota equal to 123456789\", () => {",
+									"    pm.expect(pm.response.json()[\"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\"].sizeQuota).to.eql(123456789);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/scim+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"createdtestuser@test.org\",\n    \"displayName\": \"updatedtestuser\",\n    \"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\": {\n        \"sizeQuota\": 123456789\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Users/{{testUserId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Users",
+								"{{testUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a single user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/scim+json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Users/{{testUserId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Users",
+								"{{testUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Domains",
+			"item": [
+				{
+					"name": "Create a single domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Response status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(jsonData).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with ID \\\"testdomain.org\\\"\", () => {",
+									"    pm.expect(jsonData.id).to.eql(\"testdomain.org\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with domainName \\\"testdomain.org\\\"\", () => {",
+									"    pm.expect(jsonData.domainName).to.eql(\"testdomain.org\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains a valid non-null domain ID (the ID of the domain which was created)\", () => {",
+									"    pm.expect(jsonData.id).to.not.be.null;",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with maxQuota equal to 12345\", () => {",
+									"    pm.expect(jsonData.maxQuota).to.eql(12345);",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"testDomainId\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/scim+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"domainName\": \"testdomain.org\",\n    \"maxAliases\": 10,\n    \"maxMailboxes\": 100,\n    \"maxQuota\": 12345,\n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Domains",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read all domains",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(jsonData.Resources).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains a domain with ID \\\"testdomain.org\\\"\", () => {",
+									"    idIsContained = jsonData.Resources.some((resource) => resource.id === \"testdomain.org\");",
+									"    pm.expect(idIsContained).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with maxQuota equal to 12345\", () => {",
+									"    quotaIsCorrect = jsonData.Resources.some((resource) => resource.maxQuota === 12345);",
+									"    pm.expect(quotaIsCorrect).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Domains",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read a single domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(jsonData).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with ID \\\"testdomain.org\\\"\", () => {",
+									"    pm.expect(jsonData.id).to.eql(\"testdomain.org\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with maxQuota equal to 12345\", () => {",
+									"    pm.expect(jsonData.maxQuota).to.eql(12345);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Domains/{{testDomainId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Domains",
+								"{{testDomainId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a single domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Response status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type header is application/scim+json\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+									"});",
+									"",
+									"pm.test(\"Response body is not empty\", () => {",
+									"    pm.expect(jsonData).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test(\"Response body contains the domain ID of the domain we want to read\", () => {",
+									"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get('testDomainId'));",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with description \\\"This is some new description\\\"\", () => {",
+									"    pm.expect(jsonData.description).to.eql(\"This is some new description\");",
+									"});",
+									"",
+									"pm.test(\"Response body contains domain with maxQuota equal to 123456789\", () => {",
+									"    pm.expect(jsonData.maxQuota).to.eql(123456789);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/scim+json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"This is some new description\",\n    \"maxQuota\": 123456789\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/Domains/{{testDomainId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Domains",
+								"{{testDomainId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a single domain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 204\", () => {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/scim+json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Domains/{{testDomainId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Domains",
+								"{{testDomainId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Superadmin",
+					"item": [
+						{
+							"name": "(Basic Auth) Create a single user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/scim+json\", () => {",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+											"});",
+											"",
+											"pm.test(\"Response body is not empty\", () => {",
+											"    pm.expect(pm.response.json()).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"Response body contains user with userName \\\"createdtestuser@test.org\\\"\", () => {",
+											"    pm.expect(pm.response.json().userName).to.eql(\"createdtestuser@test.org\");",
+											"});",
+											"",
+											"pm.test(\"Response body contains a valid non-null user ID (the ID of the user which was created)\", () => {",
+											"    pm.expect(pm.response.json().id).to.not.be.null;",
+											"});",
+											"",
+											"pm.test(\"Response body contains user with sizeQuota equal to 12345\", () => {",
+											"    pm.expect(pm.response.json()[\"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\"].sizeQuota).to.eql(12345);",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"testUserId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "admin@localhost.org",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\": \"createdtestuser@test.org\",\n    \"id\": \"createdtestuser@test.org\",\n    \"active\": true,\n    \"password\": \"somepass123\",\n    \"displayName\": \"createdtestuser\",\n    \"emails\": [{\"value\":\"createdtestuser@test.org\"}],\n    \"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\": {\n        \"sizeQuota\": 12345\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/Users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Basic Auth) Read all users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/scim+json\", () => {",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+											"});",
+											"",
+											"pm.test(\"Response body is not empty\", () => {",
+											"    pm.expect(pm.response.json().Resources).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"Response body contains user with userName \\\"createdtestuser@test.org\\\"\", () => {",
+											"    pm.expect(pm.response.json().Resources[0].userName).to.eql(\"createdtestuser@test.org\");",
+											"});",
+											"",
+											"pm.test(\"Response body contains user with sizeQuota equal to 12345\", () => {",
+											"    pm.expect(pm.response.json().Resources[0][\"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\"].sizeQuota).to.eql(12345);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "admin@localhost.org",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/Users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Basic Auth) Delete a single user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 204\", () => {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "admin123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "admin@localhost.org",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/Users/{{testUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Users",
+										"{{testUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Bearer Token Auth) Create a single domain",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"jsonData = pm.response.json();",
+											"",
+											"pm.test(\"Response status code is 201\", () => {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/scim+json\", () => {",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+											"});",
+											"",
+											"pm.test(\"Response body is not empty\", () => {",
+											"    pm.expect(jsonData).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"Response body contains domain with ID \\\"testdomain.org\\\"\", () => {",
+											"    pm.expect(jsonData.id).to.eql(\"testdomain.org\");",
+											"});",
+											"",
+											"pm.test(\"Response body contains domain with domainName \\\"testdomain.org\\\"\", () => {",
+											"    pm.expect(jsonData.domainName).to.eql(\"testdomain.org\");",
+											"});",
+											"",
+											"pm.test(\"Response body contains a valid non-null domain ID (the ID of the domain which was created)\", () => {",
+											"    pm.expect(jsonData.id).to.not.be.null;",
+											"});",
+											"",
+											"pm.test(\"Response body contains domain with maxQuota equal to 12345\", () => {",
+											"    pm.expect(jsonData.maxQuota).to.eql(12345);",
+											"});",
+											"",
+											"pm.collectionVariables.set(\"testDomainId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superadmin_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"domainName\": \"testdomain.org\",\n    \"maxAliases\": 10,\n    \"maxMailboxes\": 100,\n    \"maxQuota\": 12345,\n    \"active\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/Domains",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Domains"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Bearer Token Auth) Read all domains",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"jsonData = pm.response.json();",
+											"",
+											"pm.test(\"Response status code is 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/scim+json\", () => {",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/scim+json');",
+											"});",
+											"",
+											"pm.test(\"Response body is not empty\", () => {",
+											"    pm.expect(jsonData.Resources).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"Response body contains a domain with ID \\\"testdomain.org\\\"\", () => {",
+											"    idIsContained = jsonData.Resources.some((resource) => resource.id === \"testdomain.org\");",
+											"    pm.expect(idIsContained).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"Response body contains domain with maxQuota equal to 12345\", () => {",
+											"    quotaIsCorrect = jsonData.Resources.some((resource) => resource.maxQuota === 12345);",
+											"    pm.expect(quotaIsCorrect).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superadmin_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/Domains",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Domains"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Bearer Token Auth) Delete a single domain",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 204\", () => {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{superadmin_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/Domains/{{testDomainId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Domains",
+										"{{testDomainId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Non-superadmin",
+					"item": [
+						{
+							"name": "(Basic Auth) Create a single user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "test123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "test@test.org",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\": \"createdtestuser@test.org\",\n    \"id\": \"createdtestuser@test.org\",\n    \"active\": true,\n    \"password\": \"somepass123\",\n    \"displayName\": \"createdtestuser\",\n    \"emails\": [{\"value\":\"createdtestuser@test.org\"}],\n    \"urn:audriga:params:scim:schemas:extension:provisioning:2.0:User\": {\n        \"sizeQuota\": 12345\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/Users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Basic Auth) Read all users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "test@test.org",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "test123",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/Users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Basic Auth) Delete a single user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "test123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "test@test.org",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/Users/{{testUserId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Users",
+										"{{testUserId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Bearer Token Auth) Create a single domain",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{non_superadmin_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"domainName\": \"testdomain.org\",\n    \"maxAliases\": 10,\n    \"maxMailboxes\": 100,\n    \"maxQuota\": 12345,\n    \"active\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/Domains",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Domains"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Bearer Token Auth) Read all domains",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{non_superadmin_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/Domains",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Domains"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Bearer Token Auth) Delete a single domain",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", () => {",
+											"    pm.response.to.have.status(401);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{non_superadmin_jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/scim+json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/Domains/{{testDomainId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Domains",
+										"{{testDomainId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin123",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin@localhost.org",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "testUserId",
+			"value": ""
+		},
+		{
+			"key": "testGroupId",
+			"value": ""
+		},
+		{
+			"key": "testUserId2",
+			"value": ""
+		},
+		{
+			"key": "testUserId2",
+			"value": ""
+		},
+		{
+			"key": "testDomainId",
+			"value": ""
+		}
+	]
+}
