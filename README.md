@@ -17,6 +17,7 @@ This is a [SCIM](http://www.simplecloud.info/) API for [PostfixAdmin](https://gi
         * [Usage](#usage)
         * [JWT token generation](#jwt-token-generation)
 * [Authorization](#authorization)
+* [SCIM clients](#scim-clients)
 * [Example calls](#example-calls)
 * [Acknowledgements](#acknowledgements)
 
@@ -37,6 +38,7 @@ This API supports the following:
 
 **postfixadmin-scim-api** makes direct requests to the [PostfixAdmin](https://github.com/postfixadmin/postfixadmin) database and does not rely on the [PostfixAdmin](https://github.com/postfixadmin/postfixadmin) code. It also comes with is own http framework provided by [scim-server-php](https://github.com/audriga/scim-server-php).
 
+This is a **work in progress** project. It already works pretty well but some features will be added in the future and some bugs may still be arround 😉
 
 ## Installation
 
@@ -92,6 +94,12 @@ vendor/audriga/scim-server-php/bin/generate_jwt.php --username superadmin@domain
 * For now, only Super Admins are allowed to use the SCIM API
 * Super Admins are authorized to perform all operations on all resources through the SCIM API 
 * Domain Admins and regular users will get a HTTP 401 error on all operations through the SCIM API
+
+## SCIM clients
+
+* **postfixadmin-scim-api** was successfully tested with [Azure AD](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/sync-scim) as a SCIM client
+* **postfixadmin-scim-api** should be compatible with any SCIM v2.0 client
+* For a [Keycloack](https://www.keycloak.org/) client, you can have a look here: https://lab.libreho.st/libre.sh/scim/keycloak-scim
 
 ## Example calls
 
